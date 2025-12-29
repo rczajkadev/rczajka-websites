@@ -1,30 +1,28 @@
 import { defineConfig } from 'vite';
 
-const buildConfig = {
+const sharedConfig = {
   root: './src',
   base: './',
-  build: {
-    emptyOutDir: true,
-    minify: true,
-    copyPublicDir: false,
-  },
-  css: {
-    preprocessorOptions: {
-      scss: { api: 'modern' },
-    }
-  }
-};
-
-const devConfig = {
-  root: './src',
-  base: './',
-  server: {
-    open: true,
-  },
   css: {
     preprocessorOptions: {
       scss: { api: 'modern' },
     },
+  }
+};
+
+const buildConfig = {
+  ...sharedConfig,
+  build: {
+    emptyOutDir: true,
+    minify: true,
+    copyPublicDir: false,
+  }
+};
+
+const devConfig = {
+  ...sharedConfig,
+  server: {
+    open: true,
   }
 };
 
