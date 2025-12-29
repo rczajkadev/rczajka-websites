@@ -9,6 +9,7 @@
   --fgColor-secondary: #9198a1;
   --bgColor-primary: #010409;
   --bgColor-secondary: #0d1117;
+  --color-focus: #5e9ed6;
   --transition-duration: .25s;
 }
 
@@ -29,11 +30,6 @@ body {
 a {
   text-decoration: none;
   color: inherit;
-}
-
-a:focus-visible {
-  outline: 2px solid var(--fgColor-primary);
-  outline-offset: 0.25rem;
 }
 
 ul {
@@ -100,6 +96,12 @@ p, h1, h2, h3 {
 }
 
 .link {
+  &:focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+    border-radius: 999px;
+  }
+
   &::after {
     display: inline-block;
     margin-left: 1em;
