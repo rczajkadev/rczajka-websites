@@ -1,6 +1,6 @@
-@import "@fontsource/inter/latin-400.css";
-@import "@fontsource/inter/latin-800.css";
-@import "@fontsource/dm-serif-display/latin-400.css";
+@import '@fontsource/inter/latin-400.css';
+@import '@fontsource/inter/latin-800.css';
+@import '@fontsource/dm-serif-display/latin-400.css';
 
 :root {
   color-scheme: dark;
@@ -10,7 +10,7 @@
   --bgColor-primary: #010409;
   --bgColor-secondary: #0d1117;
   --color-focus: #5e9ed6;
-  --transition-duration: .25s;
+  --transition-duration: 0.25s;
 }
 
 html {
@@ -38,7 +38,10 @@ ul {
   padding: 0;
 }
 
-p, h1, h2, h3 {
+p,
+h1,
+h2,
+h3 {
   margin: 0;
 }
 
@@ -52,6 +55,7 @@ p, h1, h2, h3 {
   display: flex;
   align-items: center;
   min-height: 100vh;
+  min-height: 100dvh;
   padding: 20px;
 }
 
@@ -61,7 +65,7 @@ p, h1, h2, h3 {
 }
 
 .title {
-  font-family: "DM Serif Display", serif;
+  font-family: 'DM Serif Display', serif;
   font-size: 3rem;
   line-height: 0.975;
   letter-spacing: -0.02em;
@@ -108,15 +112,15 @@ p, h1, h2, h3 {
   }
 
   &--external::after {
-    content: "↗";
+    content: '↗';
   }
 
   &--internal::after {
-    content: "→";
+    content: '→';
   }
 
   &--email::after {
-    content: "✉";
+    content: '✉';
   }
 }
 
@@ -164,5 +168,11 @@ p, h1, h2, h3 {
 
   &:hover::before {
     width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition-duration: 0s;
   }
 }

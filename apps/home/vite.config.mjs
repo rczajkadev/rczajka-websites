@@ -5,8 +5,8 @@ const sharedConfig = {
   base: './',
   css: {
     preprocessorOptions: {
-      scss: { api: 'modern' },
-    },
+      scss: { api: 'modern' }
+    }
   }
 };
 
@@ -16,13 +16,14 @@ const buildConfig = {
     emptyOutDir: true,
     minify: true,
     copyPublicDir: false,
+    outDir: '../dist'
   }
 };
 
 const devConfig = {
   ...sharedConfig,
   server: {
-    open: true,
+    open: true
   }
 };
 

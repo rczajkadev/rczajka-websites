@@ -1,0 +1,6 @@
+node_modules
+dist
+.turbo
+.vercel
+pnpm-lock.yaml
+*.min.*
