@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "build": "turbo run build",
-    "dev": "turbo run dev",
+    "dev": "turbo run dev --ui=tui",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{css,html,js,json,md,mjs,scss,ts,tsx,yaml,yml}\"",
     "format:check": "prettier --check \"**/*.{css,html,js,json,md,mjs,scss,ts,tsx,yaml,yml}\"",
