@@ -4,3 +4,4 @@ dist
 .vercel
 pnpm-lock.yaml
 *.min.*
+next-env.d.ts
