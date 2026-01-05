@@ -1,0 +1,47 @@
+name: Setup Node.js + pnpm
+description: Setup Node.js and pnpm via Corepack (with pnpm cache)
+
+inputs:
+  node-version:
+    description: Node.js version to use
+    required: true
+  pnpm-version:
+    description: pnpm version to activate via Corepack
+    required: false
+    default: "9.0.0"
+  cache-dependency-path:
+    description: Path(s) to lockfile(s) used for pnpm caching
+    required: false
+    default: "pnpm-lock.yaml"
+
+runs:
+  using: composite
+  steps:
+    - name: Setup Node.js
+      uses: actions/setup-node@v6
+      with:
+        node-version: ${{ inputs.node-version }}
+
+    - name: Enable Corepack
+      shell: bash
+      run: corepack enable
+
+    - name: Activate pnpm
+      shell: bash
+      run: corepack prepare pnpm@${{ inputs.pnpm-version }} --activate
+
+    - name: Get pnpm store path
+      shell: bash
+      run: echo "PNPM_STORE_PATH=$(pnpm store path --silent)" >> "$GITHUB_ENV"
+
+    - name: Cache pnpm store
+      uses: actions/cache@v5
+      with:
+        path: ${{ env.PNPM_STORE_PATH }}
+        key: ${{ runner.os }}-pnpm-store-${{ inputs.node-version }}-${{ inputs.pnpm-version }}-${{ hashFiles(inputs.cache-dependency-path) }}
+        restore-keys: |
+          ${{ runner.os }}-pnpm-store-${{ inputs.node-version }}-${{ inputs.pnpm-version }}-
+
+    - name: pnpm version
+      shell: bash
+      run: pnpm --version
