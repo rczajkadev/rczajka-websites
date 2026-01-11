@@ -36,5 +36,8 @@ yarn-error.log*
 .DS_Store
 *.pem
 
+# Sanity
+.sanity/
+
 # TODO list
 TODOs.md
