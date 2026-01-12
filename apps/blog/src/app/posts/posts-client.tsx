@@ -237,9 +237,6 @@ export default function PostsClient() {
   return (
     <section className="space-y-8">
       <div className="space-y-3">
-        <label className="text-xs uppercase tracking-[0.3em] text-neutral-500" htmlFor="search">
-          Search
-        </label>
         <Input
           id="search"
           placeholder="Search... (tip: tag:design cat:product -tag:old)"

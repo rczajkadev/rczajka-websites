@@ -8,7 +8,6 @@ export default function Home() {
   return (
     <div className="space-y-10">
       <header className="space-y-4">
-        <p className="text-xs uppercase tracking-[0.3em] text-neutral-500">Archive</p>
         <h1 className="text-4xl font-semibold text-white">All posts</h1>
         <p className="max-w-2xl text-sm text-neutral-300">
           Search across titles, content, tags, and categories. Filters stay entirely client-side
