@@ -4,14 +4,14 @@ import { useEffect, useMemo, useState } from 'react';
 import type MiniSearch from 'minisearch';
 import { POSTS_PAGE_SIZE, SEARCH_DEBOUNCE_MS } from '@/lib/constants';
 import { paginate } from '@/lib/pagination';
-import { parseSearchQuery } from '@/lib/search/queryParser';
 import {
   filterResults,
   loadSearchIndex,
+  parseSearchQuery,
   resolveBaseResults,
-  sortDocsByDate
-} from '@/lib/search/searchEngine';
-import type { SearchDoc } from '@/lib/search/types';
+  sortDocsByDate,
+  type SearchDoc
+} from '@/lib/search';
 import { useDebouncedValue } from './useDebouncedValue';
 
 type UsePostsSearchParams = {

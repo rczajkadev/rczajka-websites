@@ -1,4 +1,4 @@
-import type { SearchDoc } from '@/lib/search/types';
+import type { SearchDoc } from '@/lib/search';
 import { PostSummaryCard } from './post-summary-card';
 
 type PostsListProps = {

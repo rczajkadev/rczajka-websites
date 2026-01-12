@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { formatDate } from '@/lib/format';
-import type { SearchDoc } from '@/lib/search/types';
+import type { SearchDoc } from '@/lib/search';
 
 type PostSummaryCardProps = {
   post: SearchDoc;
