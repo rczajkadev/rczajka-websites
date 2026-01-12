@@ -11,11 +11,18 @@
   --bgColor-secondary: #0d1117;
   --color-focus: #5e9ed6;
   --transition-duration: 0.25s;
+  --container-width: 620px;
 }
 
 html {
   font-size: 100%;
   box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
 }
 
 body {
@@ -24,7 +31,7 @@ body {
   color: var(--fgColor-primary);
   margin: 0;
   padding: 0;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 a {
@@ -45,23 +52,22 @@ h3 {
   margin: 0;
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-
 .page {
   display: flex;
   align-items: center;
   min-height: 100vh;
   min-height: 100dvh;
-  padding: 20px;
+  padding: clamp(20px, 6vw, 56px);
 }
 
 .container {
-  max-width: 600px;
+  max-width: var(--container-width);
   margin: 0 auto;
+}
+
+.hero {
+  display: grid;
+  gap: 0.5rem;
 }
 
 .title {
@@ -79,24 +85,20 @@ h3 {
   font-size: 0.875rem;
   font-weight: 800;
   text-transform: uppercase;
-  margin-top: 1rem;
   letter-spacing: 0.2em;
 }
 
 .text {
   color: var(--fgColor-secondary);
-  margin-top: 2rem;
+  margin-top: 1.75rem;
   line-height: 2;
   letter-spacing: 0.01em;
 }
 
 .links {
-  display: inline-block;
+  display: inline-grid;
+  gap: 1rem;
   margin-top: 2rem;
-
-  & > li:not(:first-child) {
-    margin-top: 1rem;
-  }
 }
 
 .link {
@@ -108,7 +110,7 @@ h3 {
 
   &::after {
     display: inline-block;
-    margin-left: 1em;
+    margin-left: 1rem;
   }
 
   &--external::after {
@@ -129,10 +131,17 @@ h3 {
   display: flex;
   font-size: 0.75rem;
   align-items: center;
+  gap: 1.5rem;
   padding: 0 2rem 0 0;
   cursor: pointer;
   overflow: hidden;
   min-height: 2.5rem;
+
+  &:focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+    border-radius: 999px;
+  }
 
   &--muted {
     opacity: 0.5;
@@ -141,14 +150,14 @@ h3 {
   }
 
   &__image {
-    max-width: 2.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
     border-radius: 50%;
     background: var(--bgColor-primary);
   }
 
   &__text {
     color: var(--fgColor-primary);
-    margin-left: 2rem;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.2em;
