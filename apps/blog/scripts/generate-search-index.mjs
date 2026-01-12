@@ -74,7 +74,10 @@ await mkdir(outputDir, { recursive: true });
 const searchIndexPath = path.join(outputDir, 'search-index.json');
 const searchDocsPath = path.join(outputDir, 'search-docs.json');
 
-const storedDocs = documents.map(({ content, ...doc }) => doc);
+const storedDocs = documents.map(({ content, ...doc }) => {
+  void content;
+  return doc;
+});
 
 await Promise.all([
   writeFile(searchIndexPath, JSON.stringify(miniSearch.toJSON()), 'utf8'),

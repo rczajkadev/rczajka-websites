@@ -8,27 +8,4 @@
   html {
     scroll-behavior: smooth;
   }
-
-  body {
-    @apply min-h-screen bg-neutral-950 text-neutral-100 antialiased;
-    font-family: var(--font-body);
-    background-image:
-      radial-gradient(1100px 500px at 12% -8%, rgba(56, 189, 248, 0.14), transparent 60%),
-      radial-gradient(900px 420px at 90% 6%, rgba(248, 113, 113, 0.12), transparent 60%),
-      linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0));
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  nav {
-    font-family: var(--font-display);
-  }
-
-  a {
-    @apply text-neutral-100;
-  }
 }
