@@ -26,6 +26,8 @@ coverage
 out/
 build
 dist
+apps/blog/public/search-index.json
+apps/blog/public/search-docs.json
 
 # Debug
 npm-debug.log*
