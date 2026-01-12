@@ -33,6 +33,12 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${bodyFont.variable} ${displayFont.variable}`}>
         <div className="min-h-screen">
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:absolute focus:left-6 focus:top-6 focus:z-50 focus:rounded-full focus:bg-neutral-900 focus:px-4 focus:py-2 focus:text-xs focus:uppercase focus:tracking-[0.3em] focus:text-white"
+          >
+            Skip to content
+          </a>
           <header className="border-b border-white/10">
             <div className="mx-auto flex w-full max-w-5xl items-center justify-between px-6 py-6">
               <Link href="/" className="text-lg font-semibold tracking-[0.18em] uppercase">
@@ -53,7 +59,7 @@ export default function RootLayout({
               </nav>
             </div>
           </header>
-          <main className="mx-auto w-full max-w-5xl px-6 py-12">
+          <main id="main-content" className="mx-auto w-full max-w-5xl px-6 py-12">
             {children}
           </main>
         </div>
