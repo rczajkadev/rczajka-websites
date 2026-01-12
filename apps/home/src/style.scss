@@ -1,6 +1,26 @@
-@import '@fontsource/inter/latin-400.css';
-@import '@fontsource/inter/latin-800.css';
-@import '@fontsource/dm-serif-display/latin-400.css';
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./assets/fonts/inter-latin-400.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('./assets/fonts/inter-latin-800.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'DM Serif Display';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./assets/fonts/dm-serif-display-latin-400.woff2') format('woff2');
+}
 
 @mixin focus-visible {
   outline: 2px solid var(--color-focus);
@@ -32,7 +52,7 @@ html {
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
   background: var(--bgColor-primary);
   color: var(--fgColor-primary);
   margin: 0;
@@ -77,7 +97,7 @@ h3 {
 }
 
 .title {
-  font-family: 'DM Serif Display', serif;
+  font-family: 'DM Serif Display', Georgia, 'Times New Roman', serif;
   font-size: 3rem;
   line-height: 0.975;
   letter-spacing: -0.02em;
