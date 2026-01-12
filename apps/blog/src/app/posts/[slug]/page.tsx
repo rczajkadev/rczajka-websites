@@ -5,7 +5,6 @@ import { formatDate } from '@/lib/format';
 import { buildToc } from '@/lib/table-of-contents';
 import { addCodeHighlights, PortableTextRenderer } from '@/sanity/portable-text';
 import { getAllPosts, getAllSlugs, getPostBySlug } from '@/sanity/posts';
-import { PostCard } from '@/components/post-card';
 
 export const dynamic = 'error';
 export const dynamicParams = false;
@@ -15,41 +14,6 @@ export async function generateStaticParams() {
   const slugs = await getAllSlugs();
   return slugs.map((slug) => ({ slug }));
 }
-
-const getRelatedPosts = (currentSlug: string, posts: Awaited<ReturnType<typeof getAllPosts>>) => {
-  const current = posts.find((post) => post.slug === currentSlug);
-  if (!current) {
-    return [];
-  }
-
-  const currentTags = new Set(current.tags ?? []);
-
-  return posts
-    .filter((post) => post.slug !== currentSlug)
-    .map((post) => {
-      let score = 0;
-      if (post.category && current.category && post.category === current.category) {
-        score += 2;
-      }
-      if (post.tags?.length && currentTags.size > 0) {
-        post.tags.forEach((tag) => {
-          if (currentTags.has(tag)) {
-            score += 3;
-          }
-        });
-      }
-      return { post, score };
-    })
-    .filter((entry) => entry.score > 0)
-    .sort((a, b) => {
-      if (b.score !== a.score) {
-        return b.score - a.score;
-      }
-      return new Date(b.post.publishedAt).getTime() - new Date(a.post.publishedAt).getTime();
-    })
-    .slice(0, 4)
-    .map((entry) => entry.post);
-};
 
 export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -68,8 +32,6 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
     currentIndex >= 0 && currentIndex < allPosts.length - 1
       ? allPosts[currentIndex + 1]
       : null;
-
-  const relatedPosts = getRelatedPosts(post.slug, allPosts);
 
   return (
     <article className="space-y-12">
@@ -159,19 +121,6 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
         ) : null}
       </section>
 
-      {relatedPosts.length ? (
-        <section className="space-y-6">
-          <div>
-            <p className="text-xs uppercase tracking-[0.3em] text-neutral-500">Related</p>
-            <h2 className="mt-3 text-2xl font-semibold text-white">You might also like</h2>
-          </div>
-          <div className="grid gap-6 md:grid-cols-2">
-            {relatedPosts.map((related) => (
-              <PostCard key={related._id} post={related} />
-            ))}
-          </div>
-        </section>
-      ) : null}
     </article>
   );
 }
