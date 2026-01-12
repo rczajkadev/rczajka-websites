@@ -13,9 +13,7 @@ export const getAllPosts = async () => {
 };
 
 export const getPostBySlug = async (slug?: string | null) => {
-  if (!slug) {
-    return null;
-  }
+  if (!slug) return null;
   return sanityFetch<Post | null>(postBySlugQuery, { slug });
 };
 

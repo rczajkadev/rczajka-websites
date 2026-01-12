@@ -24,10 +24,8 @@ const languageMap: Record<string, ShikiLanguage> = {
 };
 
 const resolveLanguage = (language?: string) => {
-  if (!language) {
-    return 'plaintext';
-  }
-  return languageMap[language.toLowerCase()] ?? 'plaintext';
+  const defaultLanguage = 'plaintext';
+  return language ? languageMap[language.toLowerCase()] ?? defaultLanguage : defaultLanguage;
 };
 
 const loadHighlighter = async () => {

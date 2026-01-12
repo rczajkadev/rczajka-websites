@@ -11,8 +11,7 @@ const postFields = `
 `;
 
 export const allPostsQuery = `
-*[_type == "post" && defined(slug.current) && (includeDrafts || !draft)]
-| order(publishedAt desc) {
+*[_type == "post" && defined(slug.current) && (includeDrafts || !draft)] | order(publishedAt desc) {
   ${postFields}
 }
 `;

@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Badge } from '@/components/ui/badge';
 import { formatDate } from '@/lib/format';
-import { buildToc } from '@/lib/toc';
+import { buildToc } from '@/lib/table-of-contents';
 import { addCodeHighlights, PortableTextRenderer } from '@/sanity/portable-text';
 import { getAllPosts, getAllSlugs, getPostBySlug } from '@/sanity/posts';
 import { PostCard } from '@/components/post-card';

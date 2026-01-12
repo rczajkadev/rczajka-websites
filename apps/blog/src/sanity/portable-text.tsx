@@ -4,7 +4,7 @@ import { toPlainText } from '@portabletext/toolkit';
 import type { PortableTextBlock } from '@portabletext/types';
 import katex from 'katex';
 import { buildHeadingId } from '@/lib/slug';
-import { highlightCode } from '@/lib/shiki';
+import { highlightCode } from '@/lib/syntax-highlighter';
 import { urlForImage } from './image';
 import type { PortableTextValue } from './types';
 
@@ -31,6 +31,7 @@ const getImageDimensions = (ref?: string) => {
   }
 
   const match = ref.match(/-(\d+)x(\d+)-/);
+
   if (!match) {
     return null;
   }

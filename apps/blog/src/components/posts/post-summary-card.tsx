@@ -1,11 +1,14 @@
 import Link from 'next/link';
 import { formatDate } from '@/lib/format';
-import type { Post } from '@/sanity/types';
-import { Badge } from './ui/badge';
+import type { SearchDoc } from '@/lib/search/types';
 
-export const PostCard = ({ post }: { post: Post }) => {
+type PostSummaryCardProps = {
+  post: SearchDoc;
+};
+
+export const PostSummaryCard = ({ post }: PostSummaryCardProps) => {
   return (
-    <article className="group relative rounded-3xl border border-white/10 bg-neutral-900/50 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.35)] transition hover:border-white/30 focus-within:border-white/40">
+    <article className="group relative rounded-3xl border border-white/10 bg-neutral-900/50 p-6 transition hover:border-white/30 focus-within:border-white/40">
       <Link
         href={`/posts/${post.slug}`}
         aria-label={`Read ${post.title}`}
@@ -25,14 +28,20 @@ export const PostCard = ({ post }: { post: Post }) => {
             </Link>
           ) : null}
         </div>
-        <h3 className="mt-4 text-2xl font-semibold text-white">{post.title}</h3>
+        <h2 className="mt-4 text-2xl font-semibold">{post.title}</h2>
         {post.excerpt ? (
           <p className="mt-3 text-sm leading-6 text-neutral-300">{post.excerpt}</p>
         ) : null}
         {post.tags?.length ? (
-          <div className="mt-4 flex flex-wrap gap-2">
+          <div className="mt-4 flex flex-wrap gap-2 text-[10px] uppercase tracking-[0.25em] text-neutral-500">
             {post.tags.map((tag) => (
-              <Badge key={tag}>{tag}</Badge>
+              <Link
+                key={tag}
+                href={`/tags/${encodeURIComponent(tag)}`}
+                className="relative z-20 pointer-events-auto rounded-full border border-white/10 px-3 py-1 transition hover:border-white/30 hover:text-white"
+              >
+                {tag}
+              </Link>
             ))}
           </div>
         ) : null}
