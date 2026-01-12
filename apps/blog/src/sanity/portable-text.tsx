@@ -3,7 +3,7 @@ import { PortableText, type PortableTextComponents } from '@portabletext/react';
 import { toPlainText } from '@portabletext/toolkit';
 import type { PortableTextBlock } from '@portabletext/types';
 import katex from 'katex';
-import { buildHeadingId } from '@/lib/slug';
+import { buildHeadingId } from '@/lib/heading-ids';
 import { highlightCode } from '@/lib/syntax-highlighter';
 import { urlForImage } from './image';
 import type { PortableTextValue } from './types';

@@ -1,7 +1,7 @@
 import { toPlainText } from '@portabletext/toolkit';
 import type { PortableTextBlock } from '@portabletext/types';
 import type { PortableTextValue } from '@/sanity/types';
-import { buildHeadingId } from './slug';
+import { buildHeadingId } from './heading-ids';
 
 export type TocEntry = {
   id: string;
