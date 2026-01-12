@@ -67,7 +67,7 @@ h3 {
 
 .hero {
   display: grid;
-  gap: 0.5rem;
+  gap: 0.75rem;
 }
 
 .title {
@@ -93,6 +93,7 @@ h3 {
   margin-top: 1.75rem;
   line-height: 2;
   letter-spacing: 0.01em;
+  max-width: 60ch;
 }
 
 .links {
@@ -110,7 +111,7 @@ h3 {
 
   &::after {
     display: inline-block;
-    margin-left: 1rem;
+    margin-left: auto;
   }
 
   &--external::after {
@@ -123,6 +124,14 @@ h3 {
 
   &--email::after {
     content: '✉';
+  }
+
+  &--external,
+  &--internal,
+  &--email {
+    .button__text {
+      margin-right: 2rem;
+    }
   }
 }
 
