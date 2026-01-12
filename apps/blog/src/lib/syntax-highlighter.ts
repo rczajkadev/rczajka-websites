@@ -2,9 +2,14 @@ const SHIKI_THEME = 'github-dark';
 const SHIKI_LANGUAGES = ['csharp', 'ts', 'tsx', 'python', 'yaml', 'plaintext'] as const;
 
 type ShikiLanguage = (typeof SHIKI_LANGUAGES)[number];
+type ShikiSelector = { theme: string; langs: string[] };
+type ShikiOptions  = { themes: string[]; langs: string[] };
 
-let highlighterPromise: Promise<{ codeToHtml: (code: string, options: { lang: string; theme: string }) => string }> | null =
-  null;
+type ShikiHighlighter = {
+  codeToHtml: (code: string, options: { lang: string; theme: string }) => string;
+};
+
+let highlighterPromise: Promise<ShikiHighlighter> | null = null;
 
 const languageMap: Record<string, ShikiLanguage> = {
   csharp: 'csharp',
@@ -35,15 +40,9 @@ const loadHighlighter = async () => {
 
   highlighterPromise = (async () => {
     const shiki = (await import('shiki')) as {
-      getHighlighter?: (options: { theme: string; langs: string[] }) => Promise<{
-        codeToHtml: (code: string, options: { lang: string; theme: string }) => string;
-      }>;
-      createHighlighter?: (options: { themes: string[]; langs: string[] }) => Promise<{
-        codeToHtml: (code: string, options: { lang: string; theme: string }) => string;
-      }>;
-      getSingletonHighlighter?: (options: { themes: string[]; langs: string[] }) => Promise<{
-        codeToHtml: (code: string, options: { lang: string; theme: string }) => string;
-      }>;
+      getHighlighter?: (options: ShikiSelector) => Promise<ShikiHighlighter>;
+      createHighlighter?: (options: ShikiOptions) => Promise<ShikiHighlighter>;
+      getSingletonHighlighter?: (options: ShikiOptions) => Promise<ShikiHighlighter>;
     };
 
     if (shiki.getSingletonHighlighter) {
