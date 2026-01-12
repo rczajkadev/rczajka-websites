@@ -11,27 +11,27 @@ const postFields = `
 `;
 
 export const allPostsQuery = `
-*[_type == "post" && defined(slug.current) && (includeDrafts || !draft)] | order(publishedAt desc) {
+*[_type == "post" && defined(slug.current)] | order(publishedAt desc) {
   ${postFields}
 }
 `;
 
 export const postBySlugQuery = `
-*[_type == "post" && slug.current == $slug && (includeDrafts || !draft)][0] {
+*[_type == "post" && slug.current == $slug][0] {
   ${postFields}
 }
 `;
 
 export const postSlugsQuery = `
-*[_type == "post" && defined(slug.current) && (includeDrafts || !draft)]{
+*[_type == "post" && defined(slug.current)]{
   "slug": slug.current
 }
 `;
 
 export const allTagsQuery = `
-*[_type == "post" && defined(slug.current) && (includeDrafts || !draft) && count(tags) > 0].tags
+*[_type == "post" && defined(slug.current) && count(tags) > 0].tags
 `;
 
 export const allCategoriesQuery = `
-*[_type == "post" && defined(slug.current) && (includeDrafts || !draft) && defined(category)].category
+*[_type == "post" && defined(slug.current) && defined(category)].category
 `;

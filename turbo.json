@@ -2,11 +2,12 @@
   "$schema": "https://turborepo.com/schema.json",
   "ui": "stream",
   "globalEnv": [
-    "HIDE_DRAFTS",
     "NODE_ENV",
     "SANITY_API_VERSION",
     "SANITY_DATASET",
     "SANITY_PROJECT_ID",
+    "SANITY_STUDIO_PROJECT_ID",
+    "SANITY_STUDIO_DATASET",
     "SANITY_USE_CDN"
   ],
   "tasks": {

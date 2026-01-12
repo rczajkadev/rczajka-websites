@@ -18,9 +18,6 @@ if (!projectId || !dataset) {
   process.exit(1);
 }
 
-const nodeEnv = process.env.NODE_ENV ?? 'development';
-const includeDrafts = nodeEnv === 'development' && process.env.HIDE_DRAFTS !== 'true';
-
 const client = createClient({
   projectId,
   dataset,
@@ -29,8 +26,7 @@ const client = createClient({
 });
 
 const query = `
-*[_type == "post" && defined(slug.current) && (includeDrafts || !draft)]
-| order(publishedAt desc) {
+*[_type == "post" && defined(slug.current)] | order(publishedAt desc) {
   _id,
   title,
   "slug": slug.current,
@@ -42,7 +38,7 @@ const query = `
 }
 `;
 
-const posts = await client.fetch(query, { includeDrafts });
+const posts = await client.fetch(query);
 
 const documents = posts.map((post) => ({
   id: post._id,

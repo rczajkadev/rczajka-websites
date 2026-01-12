@@ -7,9 +7,6 @@ if (!projectId || !dataset) {
   throw new Error('Missing SANITY_PROJECT_ID or SANITY_DATASET environment variables.');
 }
 
-const nodeEnv = process.env.NODE_ENV ?? 'development';
-export const includeDrafts = nodeEnv === 'development' && process.env.HIDE_DRAFTS !== 'true';
-
 export const sanityClient = createClient({
   projectId,
   dataset,
@@ -21,5 +18,5 @@ export const sanityFetch = async <T>(
   query: string,
   params: Record<string, unknown> = {}
 ) => {
-  return sanityClient.fetch<T>(query, { ...params, includeDrafts }, { cache: 'force-cache' });
+  return sanityClient.fetch<T>(query, params, { cache: 'force-cache' });
 };

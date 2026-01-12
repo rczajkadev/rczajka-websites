@@ -49,13 +49,6 @@ export const post = defineType({
       of: [{ type: 'string' }]
     }),
     defineField({
-      name: 'draft',
-      title: 'Draft',
-      type: 'boolean',
-      initialValue: true,
-      validation: (Rule) => Rule.required()
-    }),
-    defineField({
       name: 'body',
       title: 'Body',
       type: 'array',
