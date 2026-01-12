@@ -23,10 +23,6 @@ export type SearchIndex = {
   docs: SearchDoc[];
 };
 
-/**
- * The search index is generated at build time by scripts/generate-search-index.mjs.
- * Draft visibility is enforced there; the client only loads static JSON files.
- */
 const loadSearchIndex = async (): Promise<SearchIndex> => {
   const [indexResponse, docsResponse] = await Promise.all([
     fetch('/search-index.json'),
@@ -40,9 +36,8 @@ const loadSearchIndex = async (): Promise<SearchIndex> => {
 };
 
 const sortDocsByDate = (docs: SearchDoc[]) => {
-  return [...docs].sort(
-    (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
-  );
+  const getPublishedAt = (doc: SearchDoc) => new Date(doc.publishedAt).getTime();
+  return [...docs].sort((a, b) => getPublishedAt(b) - getPublishedAt(a));
 };
 
 const resolveBaseResults = (
@@ -56,6 +51,7 @@ const resolveBaseResults = (
   }
 
   const results = miniSearch.search(queryText, searchOptions);
+
   return results
     .map((result) => docsById.get(result.id as string))
     .filter(Boolean) as SearchDoc[];
@@ -63,6 +59,7 @@ const resolveBaseResults = (
 
 const filterResults = (docs: SearchDoc[], parsedQuery: ParsedSearchQuery) => {
   const { includeTags, excludeTags, category } = parsedQuery;
+
   if (includeTags.length === 0 && excludeTags.length === 0 && !category) {
     return docs;
   }
@@ -71,17 +68,13 @@ const filterResults = (docs: SearchDoc[], parsedQuery: ParsedSearchQuery) => {
     const docTags = (doc.tags ?? []).map(normalizeValue).filter(Boolean);
     const docCategory = normalizeValue(doc.category ?? '');
 
-    if (includeTags.length && !includeTags.every((tag) => docTags.includes(tag))) {
-      return false;
-    }
-    if (excludeTags.length && excludeTags.some((tag) => docTags.includes(tag))) {
-      return false;
-    }
-    if (category && docCategory !== category) {
-      return false;
-    }
+    const docIncludesTag = (tag: string) => docTags.includes(tag);
 
-    return true;
+    const hasAllIncludedTags = includeTags.length === 0 || includeTags.every(docIncludesTag);
+    const hasNoExcludedTags = excludeTags.length === 0 || !excludeTags.some(docIncludesTag);
+    const matchesCategory = !category || docCategory === category;
+
+    return hasAllIncludedTags && hasNoExcludedTags && matchesCategory;
   });
 };
 
