@@ -73,6 +73,12 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 
   return (
     <article className="space-y-12">
+      <Link
+        href="/"
+        className="inline-flex text-xs uppercase tracking-[0.3em] text-neutral-400 transition hover:text-white"
+      >
+        Back to posts
+      </Link>
       <header className="space-y-6">
         <div className="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.3em] text-neutral-500">
           <span>{formatDate(post.publishedAt)}</span>
