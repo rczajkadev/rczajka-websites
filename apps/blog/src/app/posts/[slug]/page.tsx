@@ -17,7 +17,9 @@ export async function generateStaticParams() {
 
 export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
+
   const post = await getPostBySlug(slug);
+
   if (!post) {
     notFound();
   }
@@ -28,8 +30,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 
   const currentIndex = allPosts.findIndex((item) => item.slug === post.slug);
   const prevPost = currentIndex > 0 ? allPosts[currentIndex - 1] : null;
-  const nextPost =
-    currentIndex >= 0 && currentIndex < allPosts.length - 1
+  const nextPost = currentIndex >= 0 && currentIndex < allPosts.length - 1
       ? allPosts[currentIndex + 1]
       : null;
 

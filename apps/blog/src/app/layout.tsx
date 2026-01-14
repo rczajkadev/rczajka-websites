@@ -1,19 +1,24 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Source_Serif_4, Space_Grotesk } from 'next/font/google';
+import localFont from 'next/font/local';
 import 'katex/dist/katex.min.css';
 import './globals.css';
 
-const bodyFont = Source_Serif_4({
-  subsets: ['latin'],
+const font = localFont({
+  src: [
+    {
+      path: './fonts/inter-latin-400.woff2',
+      weight: '400',
+      style: 'normal'
+    },
+    {
+      path: './fonts/inter-latin-800.woff2',
+      weight: '800',
+      style: 'normal'
+    }
+  ],
   display: 'swap',
   variable: '--font-body'
-});
-
-const displayFont = Space_Grotesk({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-display'
 });
 
 export const metadata: Metadata = {
@@ -31,7 +36,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${bodyFont.variable} ${displayFont.variable}`}>
+      <body className={font.variable}>
         <div className="min-h-screen">
           <a
             href="#main-content"

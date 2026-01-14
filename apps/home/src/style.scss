@@ -52,7 +52,7 @@ html {
 }
 
 body {
-  font-family: 'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Inter', 'Segoe UI', 'Helvetica Neue', 'Arial', sans-serif;
   background: var(--bgColor-primary);
   color: var(--fgColor-primary);
   margin: 0;
@@ -97,7 +97,7 @@ h3 {
 }
 
 .title {
-  font-family: 'DM Serif Display', Georgia, 'Times New Roman', serif;
+  font-family: 'DM Serif Display', 'Georgia', 'Times New Roman', serif;
   font-size: 3rem;
   line-height: 0.975;
   letter-spacing: -0.02em;
@@ -155,7 +155,7 @@ h3 {
   &--internal,
   &--email {
     .button__text {
-      margin-right: 2rem;
+      margin-right: 1rem;
     }
   }
 }
@@ -166,7 +166,7 @@ h3 {
   font-size: 0.75rem;
   align-items: center;
   gap: 1.5rem;
-  padding: 0 2rem 0 0;
+  padding: 0 1.5rem 0 0;
   cursor: pointer;
   overflow: hidden;
   min-height: 2.5rem;
